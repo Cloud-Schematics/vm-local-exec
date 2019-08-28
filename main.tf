@@ -31,7 +31,10 @@ resource "ibm_compute_vm_instance" "vm_local_exec_sample" {
     provisioner "remote-exec" {
       inline = [
         #"sh /tmp/nginx.sh"
-        "yum install nginx -y"
+        "yum upgrade -y",
+        "yum install epel-release -y",
+        "yum install nginx -y",
+        "systemctl start nginx"
       ]
     }
 }
